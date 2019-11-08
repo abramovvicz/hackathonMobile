@@ -47,6 +47,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private boolean mLocationPermissionGranted = false;
+    private static final String TAG = "MapsActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,56 +66,52 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             try {
                 String location = cityName;
                 Geocoder gc = new Geocoder(this);
-                List<Address> addresses= gc.getFromLocationName(location, 5); // get the found Address Objects
+                List<Address> addresses= gc.getFromLocationName(location, 5);
 
-                List<LatLng> ll = new ArrayList<LatLng>(addresses.size()); // A list to save the coordinates if they are available
+                List<LatLng> ll = new ArrayList<LatLng>(addresses.size());
                 System.out.println("Before addresses\n\n");
                 for(Address a : addresses){
                     if(a.hasLatitude() && a.hasLongitude()){
                         ll.add(new LatLng(a.getLatitude(), a.getLongitude()));
-                        System.out.println(addresses.toString());
                     }
                 }
+                Log.d(TAG, "array size: " + ll.size());
             } catch (IOException e) {
-                // handle the exception
+                Log.e(TAG, e.getMessage());
             }
         }
     }
 
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
-    private void getDeviceLocation(){
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-        try {
-            if (mLocationPermissionGranted) {
-                Task location = fusedLocationProviderClient.getLastLocation();
-                location.addOnCompleteListener(new OnCompleteListener() {
-                    @Override
-                    public void onComplete(@NonNull Task task) {
-                        if (task.isSuccessful()) {
-                            Log.d("Maps", "Found location");
-                            Location currentLocation = (Location) task.getResult();
-                            LatLng temp = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(temp, 15f));
-                            mMap.setMyLocationEnabled(true);
-                        }else {
-                            Log.d( "Maps", "Current location is null");
-                        }
+public LatLng getDeviceLocation(){
+    fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+    LatLng currentLocation = new LatLng(0,0);
+    try {
+        if (mLocationPermissionGranted) {
+            Task location = fusedLocationProviderClient.getLastLocation();
+            location.addOnCompleteListener(new OnCompleteListener() {
+                @Override
+                public void onComplete(@NonNull Task task) {
+                    if (task.isSuccessful()) {
+                        Log.d("Maps", "Found location");
+                        Location currentLocation = (Location) task.getResult();
+                        LatLng temp = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(temp, 15f));
+                        mMap.setMyLocationEnabled(true);
+                        currentLocation.setLatitude(temp.latitude);
+                        currentLocation.setLongitude(temp.longitude);
+
+                    }else {
+                        Log.d( "Maps", "Current location is null");
                     }
-                });
-            }
-        }catch (SecurityException e) {
-            Log.e("Maps", e.getMessage());
+                }
+            });
         }
+    }catch (SecurityException e) {
+        Log.e("Maps", e.getMessage());
     }
+    return currentLocation;
+}
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
