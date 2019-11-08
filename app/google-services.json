@@ -15,6 +15,30 @@
       },
       "oauth_client": [
         {
+          "client_id": "833648392388-7s79dqeb5aj08vo1ncgtfffi091lllfe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.harman.borsuki.carpooling",
+            "certificate_hash": "4b765aeb15c1223fcfb85a7ad178d3683d3682ed"
+          }
+        },
+        {
+          "client_id": "833648392388-rkd9f8v7i2aka8f4savsqigkfsvriv3b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.harman.borsuki.carpooling",
+            "certificate_hash": "484b082d92071eff84f9ba0d90a17a5f4d031f31"
+          }
+        },
+        {
+          "client_id": "833648392388-tvd8p7qnitl79l3vjg6fcerabcvd59rp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.harman.borsuki.carpooling",
+            "certificate_hash": "030555983e7f75a4717be6935c8542ef7707ec9c"
+          }
+        },
+        {
           "client_id": "833648392388-qqpoeqphfl8nu3ah7om8tr3tf0kur136.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

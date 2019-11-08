@@ -18,7 +18,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".RoutesSearchActivity"></activity>
+        <activity
+            android:name=".AfterLoginMainActivity"
+            android:label="@string/title_activity_after_login_main">
+
+        </activity>
+        <activity android:name=".RoutesSearchActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

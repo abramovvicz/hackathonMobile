@@ -13,4 +13,13 @@
     <string name="search">Search</string>
     <string name="type_destination">Type Destination</string>
     <string name="go_to_routes">Go to routes</string>
+    <string name="todo">TODO</string>
+    <string name="title_activity_after_login_main">AfterLoginMainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="account">ACCOUNT</string>
+    <string name="driver">DRIVER</string>
+    <string name="passenger">PASSENGER</string>
+    <string name="account_settings">Account settings</string>
 </resources>

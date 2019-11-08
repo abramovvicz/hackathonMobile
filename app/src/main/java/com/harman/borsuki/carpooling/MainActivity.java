@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
     private View.OnClickListener signInListener() {
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-            startActivity(new Intent(MainActivity.this, UserHomepageActivity.class));
+            startActivity(new Intent(MainActivity.this, AfterLoginMainActivity.class));
         }
         else {
             return new View.OnClickListener() {
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null) {
-                    startActivity(new Intent(MainActivity.this, UserHomepageActivity.class));
+                    startActivity(new Intent(MainActivity.this, AfterLoginMainActivity.class));
                 }
             }
             else {
