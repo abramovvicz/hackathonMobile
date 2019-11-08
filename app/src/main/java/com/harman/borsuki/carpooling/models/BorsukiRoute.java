@@ -90,6 +90,7 @@ public class BorsukiRoute {
     }
     public String coordinationToString(LatLng coordination) {
         return coordination.latitude + "," + coordination.longitude;
+
     }
 
 }
