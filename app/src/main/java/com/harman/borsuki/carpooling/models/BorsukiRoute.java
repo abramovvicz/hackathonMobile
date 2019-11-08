@@ -10,16 +10,16 @@ public class BorsukiRoute {
     List<LatLng> routeCoords;
     private String originName;
     private String startingPlace;
-    private String destinationName;
+    private String destination;
     private String driverName;
     private String phoneNumber;
     private LocalDateTime timeDate;
     private Double distance;
 
-    public BorsukiRoute(List<LatLng> routeCoords, String originName, String startingPlace,String destinationName, String driverName, String phoneNumber, LocalDateTime timeDate, Double distance) {
+    public BorsukiRoute(List<LatLng> routeCoords, String originName, String startingPlace,String destination, String driverName, String phoneNumber, LocalDateTime timeDate, Double distance) {
         this.routeCoords = routeCoords;
         this.originName = originName;
-        this.destinationName = destinationName;
+        this.destination = destination;
         this.startingPlace = startingPlace;
         this.driverName = driverName;
         this.phoneNumber = phoneNumber;
@@ -45,12 +45,12 @@ public class BorsukiRoute {
         this.originName = originName;
     }
 
-    public String getDestinationName() {
-        return destinationName;
+    public String getDestinationName(){
+        return this.destination;
     }
 
-    public void setDestinationName(String destinationName) {
-        this.destinationName = destinationName;
+    public void setDestination(String destinationName) {
+        this.destination = destinationName;
     }
 
     public String getDriverName() {
@@ -108,7 +108,7 @@ public class BorsukiRoute {
                 "routeCoords=" + routeCoords +
                 ", originName='" + originName + '\'' +
                 ", startingPlace='" + startingPlace + '\'' +
-                ", destinationName='" + destinationName + '\'' +
+                ", destinationName='" + destination + '\'' +
                 ", driverName='" + driverName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", timeDate=" + timeDate +

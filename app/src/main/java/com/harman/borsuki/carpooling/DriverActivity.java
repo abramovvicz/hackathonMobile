@@ -3,6 +3,7 @@ package com.harman.borsuki.carpooling;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -66,7 +67,7 @@ public class DriverActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 BorsukiRoute borsukiRoute = new BorsukiRoute();
-                borsukiRoute.setDestinationName(destinationText.getText().toString());
+                borsukiRoute.setDestination(destinationText.getText().toString());
                 borsukiRoute.setStartingPlace(startingPlaceText.getText().toString());
                 borsukiRoute.setDriverName(user.getDisplayName());
                 borsukiRoute.setPhoneNumber(phoneText.getText().toString());
@@ -74,13 +75,22 @@ public class DriverActivity extends AppCompatActivity {
                 borsukiRoute.setTimeDate(getDate(dateText.getText().toString()));
                 List<LatLng> latLngList = new ArrayList<>();
                 latLngList.add(getLocationByCityName(startingPlaceText.getText().toString()));
-                latLngList.add(getLocationByCityName(destinationText.getText().toString()));
+
+                LatLng destinationLatLng = getLocationByCityName(destinationText.getText().toString());
+
+                latLngList.add(destinationLatLng);
                 borsukiRoute.setRouteCoords(latLngList);
                 borsukiRoute.setRouteCoords(RouteService.getRoute(borsukiRoute));
 
                 Log.d("Debug", "onClick: " + borsukiRoute.toString());
 
-                //startActivity(new Intent(UserHomepageActivity.this, MapsActivity.class));
+                Uri gmmIntentUri = Uri.parse("google.navigation:q=" + destinationLatLng.latitude + "," + destinationLatLng.longitude);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(mapIntent);
+                }
+
             }
         };
     }
