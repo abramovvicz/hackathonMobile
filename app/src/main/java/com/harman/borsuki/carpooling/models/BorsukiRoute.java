@@ -1,11 +1,13 @@
 package com.harman.borsuki.carpooling.models;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.gson.annotations.SerializedName;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class BorsukiRoute {
+
     List<LatLng> route;
     private String startingName;
     private String destinationName;
