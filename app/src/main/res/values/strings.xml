@@ -22,4 +22,8 @@
     <string name="driver">DRIVER</string>
     <string name="passenger">PASSENGER</string>
     <string name="account_settings">Account settings</string>
+    <string name="desitantion">Desitantion</string>
+    <string name="starting_place">Starting place</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="send_road">Send Road</string>
 </resources>
