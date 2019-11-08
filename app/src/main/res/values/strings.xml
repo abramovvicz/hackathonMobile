@@ -26,4 +26,7 @@
     <string name="starting_place">Starting place</string>
     <string name="phone_number">Phone Number</string>
     <string name="send_road">Send Road</string>
+    <string name="logout">logout</string>
+    <string name="hint" />
+    <string name="start">START</string>
 </resources>
