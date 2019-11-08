@@ -69,12 +69,12 @@ public class DriverActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 BorsukiRoute borsukiRoute = new BorsukiRoute();
-                borsukiRoute.setDestination(destinationText.getText().toString());
-                borsukiRoute.setStartingPlace(startingPlaceText.getText().toString());
+                borsukiRoute.setDestinationName(destinationText.getText().toString());
+                borsukiRoute.setStartingName(startingPlaceText.getText().toString());
                 borsukiRoute.setDriverName(user.getDisplayName());
                 borsukiRoute.setPhoneNumber(phoneText.getText().toString());
                 borsukiRoute.setDistance(Double.valueOf(distanceText.getText().toString()));
-                borsukiRoute.setTimeDate(getDate(dateText.getText().toString()));
+                borsukiRoute.setDateTime(getDate(dateText.getText().toString()));
                 List<LatLng> latLngList = new ArrayList<>();
 
                 LatLng destinationLatLng = getLocationByCityName(destinationText.getText().toString());
@@ -83,8 +83,8 @@ public class DriverActivity extends AppCompatActivity {
                 latLngList.add(startingPlaceLatLng);
                 latLngList.add(destinationLatLng);
 
-                borsukiRoute.setRouteCoords(latLngList);
-                borsukiRoute.setRouteCoords(RouteService.getRoute(borsukiRoute));
+                borsukiRoute.setRoute(latLngList);
+                borsukiRoute.setRoute(RouteService.getRoute(borsukiRoute));
 
                 getActualLocation();
 
