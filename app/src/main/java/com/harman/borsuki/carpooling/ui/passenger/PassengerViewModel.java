@@ -1,16 +1,16 @@
-package com.harman.borsuki.carpooling.ui.notifications;
+package com.harman.borsuki.carpooling.ui.passenger;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class NotificationsViewModel extends ViewModel {
+public class PassengerViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public NotificationsViewModel() {
+    public PassengerViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is notifications fragment");
+        mText.setValue("This is passenger fragment");
     }
 
     public LiveData<String> getText() {

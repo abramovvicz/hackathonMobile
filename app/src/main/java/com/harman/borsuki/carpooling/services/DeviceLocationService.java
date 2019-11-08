@@ -1,4 +1,4 @@
-package com.harman.borsuki.carpooling.Services;
+package com.harman.borsuki.carpooling.services;
 
 import android.app.Activity;
 import android.location.Location;

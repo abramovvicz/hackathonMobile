@@ -73,6 +73,8 @@ public class RouteService {
             Log.e("Exception", ex.getLocalizedMessage());
         }
 
+
+
         return path;
 
     }

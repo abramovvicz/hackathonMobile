@@ -9,7 +9,7 @@ import android.os.Bundle;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.harman.borsuki.carpooling.Services.DeviceLocationService;
+import com.harman.borsuki.carpooling.services.DeviceLocationService;
 import com.harman.borsuki.carpooling.models.BorsukiRoute;
 import com.harman.borsuki.carpooling.services.RouteService;
 
@@ -37,7 +37,7 @@ public class DriverActivity extends AppCompatActivity {
     private EditText distanceText;
     private Button buttonSendRoad;
     private DateTimeFormatter formatter;
-    private com.harman.borsuki.carpooling.Services.DeviceLocationService deviceLocationService;
+    private com.harman.borsuki.carpooling.services.DeviceLocationService deviceLocationService;
     private LatLng actualPlace;
 
     @Override
@@ -74,7 +74,7 @@ public class DriverActivity extends AppCompatActivity {
                 borsukiRoute.setDriverName(user.getDisplayName());
                 borsukiRoute.setPhoneNumber(phoneText.getText().toString());
                 borsukiRoute.setDistance(Double.valueOf(distanceText.getText().toString()));
-                borsukiRoute.setDateTime(getDate(dateText.getText().toString()));
+                borsukiRoute.setDateTime(dateText.getText().toString());
                 List<LatLng> latLngList = new ArrayList<>();
 
                 LatLng destinationLatLng = getLocationByCityName(destinationText.getText().toString());
