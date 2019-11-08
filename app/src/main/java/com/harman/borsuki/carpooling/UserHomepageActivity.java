@@ -37,11 +37,17 @@ public class UserHomepageActivity extends AppCompatActivity {
         Button buttonChangePassword = findViewById(R.id.btn_change_password);
         Button buttonSignOut = findViewById(R.id.btn_sign_out);
         Button buttonGoToMap = findViewById(R.id.btn_go_to_map);
+        Button buttonGoToRoutes = findViewById(R.id.btn_go_to_routes);
 
         buttonSignOut.setOnClickListener(getSigning_out());
         buttonChangePassword.setOnClickListener(getChangePassword());
         buttonChangeEmail.setOnClickListener(getChangeEmail());
         buttonGoToMap.setOnClickListener(getGoToMap());
+        buttonGoToRoutes.setOnClickListener(getGoToRoutes());
+    }
+
+    private View.OnClickListener getGoToRoutes() {
+        return v -> startActivity(new Intent(UserHomepageActivity.this, RoutesSearchActivity.class));
     }
 
     private View.OnClickListener getGoToMap() {
