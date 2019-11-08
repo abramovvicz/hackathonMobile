@@ -1,5 +1,6 @@
 package com.harman.borsuki.carpooling.ui.notifications;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -32,4 +34,11 @@ public class NotificationsFragment extends Fragment {
         });
         return root;
     }
+
+    public void showTimePickerDialog(View v) {
+        DialogFragment newFragment = new TimePickerFragment();
+        newFragment.show(getActivity().getSupportFragmentManager(), "timePicker");
+    }
+
+
 }
