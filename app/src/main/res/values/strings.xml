@@ -10,4 +10,10 @@
     <string name="twitter_consumer_secret" translatable="false">EXwLo0LEJtSq9lC1SxEnYibQuuQbNDlq0O20UUUGjDSRRstOL0</string>
     <string name="title_activity_maps">Map</string>
     <string name="map">Go to map</string>
+    <string name="title_activity_driver">DriverActivity</string>
+    <string name="desitantion">Desitantion</string>
+    <string name="starting_place">Starting place</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="send_road">Send Road</string>
+    <string name="add_road">Add Road</string>
 </resources>
