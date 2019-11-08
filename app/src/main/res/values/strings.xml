@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Carpooling</string>
+    <string name="facebook_application_id" translatable="false">587925851949020</string>
+    <string name="facebook_login_protocol_scheme" translatable="false">fb587925851949020</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_out">Sign out</string>
+    <string name="change_password">Change Password</string>
+    <string name="change_email">Change email</string>
+    <string name="twitter_consumer_key" translatable="false">73qh49qQT6fFVADpxr3OAX6jJ</string>
+    <string name="twitter_consumer_secret" translatable="false">EXwLo0LEJtSq9lC1SxEnYibQuuQbNDlq0O20UUUGjDSRRstOL0</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="map">Go to map</string>
+</resources>
