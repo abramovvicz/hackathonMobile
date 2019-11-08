@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "833648392388-qqpoeqphfl8nu3ah7om8tr3tf0kur136.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.harman.borsuki.carpooling",
+            "certificate_hash": "98d21aed3ad86ee46a8e15dc6e3ff022c165508c"
+          }
+        },
+        {
           "client_id": "833648392388-q212t5jq10tqc2viaokbf7m3sbro593e.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

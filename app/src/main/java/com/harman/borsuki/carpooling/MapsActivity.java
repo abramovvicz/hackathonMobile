@@ -58,28 +58,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
         getLocationPremissions();
         checkGoogleServices();
-        getLoation("Lódź");
+        getLocationByCityName("Lódź");
     }
 
-    private void getLoation(String cityName) {
-        if(Geocoder.isPresent()){
+    private LatLng getLocationByCityName(String cityName) {
+        LatLng coords = null;
+        if (Geocoder.isPresent()) {
             try {
                 String location = cityName;
                 Geocoder gc = new Geocoder(this);
-                List<Address> addresses= gc.getFromLocationName(location, 5);
+                Address addresses = gc.getFromLocationName(location, 5).get(0);
 
-                List<LatLng> ll = new ArrayList<LatLng>(addresses.size());
-                System.out.println("Before addresses\n\n");
-                for(Address a : addresses){
-                    if(a.hasLatitude() && a.hasLongitude()){
-                        ll.add(new LatLng(a.getLatitude(), a.getLongitude()));
-                    }
+                if (addresses.hasLatitude() && addresses.hasLongitude()) {
+                    coords = new LatLng(addresses.getLatitude(), addresses.getLongitude());
                 }
-                Log.d(TAG, "array size: " + ll.size());
             } catch (IOException e) {
-                Log.e(TAG, e.getMessage());
+                e.printStackTrace();
             }
         }
+        return coords;
     }
 
 
