@@ -8,14 +8,15 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.harman.borsuki.carpooling.R;
+import com.harman.borsuki.carpooling.RoutesSearchActivity;
 import com.harman.borsuki.carpooling.models.BorsukiRoute;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BorsukiRouteAdapter extends ArrayAdapter<BorsukiRoute> {
 
-
-    public BorsukiRouteAdapter(Context context, ArrayList<BorsukiRoute> borsukiRouteList) {
+    public BorsukiRouteAdapter(Context context, List<BorsukiRoute> borsukiRouteList) {
         super(context, 0, borsukiRouteList);
     }
 

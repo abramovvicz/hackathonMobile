@@ -66,7 +66,7 @@ public class DriverActivity extends AppCompatActivity {
                 borsukiRoute.setDriverName(user.getDisplayName());
                 borsukiRoute.setPhoneNumber(phoneText.getText().toString());
                 borsukiRoute.setDistance(Double.valueOf(distanceText.getText().toString()));
-                borsukiRoute.setDateTime(getDate(dateText.getText().toString()));
+                borsukiRoute.setDateTime(dateText.getText().toString());
                 List<LatLng> latLngList = new ArrayList<>();
                 latLngList.add(getLocationByCityName(startingPlaceText.getText().toString()));
                 latLngList.add(getLocationByCityName(destinationText.getText().toString()));

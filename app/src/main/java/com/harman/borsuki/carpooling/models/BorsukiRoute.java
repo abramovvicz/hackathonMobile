@@ -1,22 +1,26 @@
 package com.harman.borsuki.carpooling.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class BorsukiRoute {
+public class BorsukiRoute implements Parcelable {
 
     List<LatLng> route;
     private String startingName;
     private String destinationName;
     private String driverName;
     private String phoneNumber;
-    private LocalDateTime dateTime;
+    private String dateTime;
     private Double distance;
 
-    public BorsukiRoute(List<LatLng> route, String startingName, String destinationName, String driverName, String phoneNumber, LocalDateTime dateTime, Double distance) {
+    public BorsukiRoute(List<LatLng> route, String startingName, String destinationName, String driverName, String phoneNumber, String dateTime, Double distance) {
         this.route = route;
         this.startingName = startingName;
         this.destinationName = destinationName;
@@ -99,11 +103,21 @@ public class BorsukiRoute {
         this.startingName = startingName;
     }
 
-    public LocalDateTime getDateTime() {
+    public String getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
+    public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
     }
 }
