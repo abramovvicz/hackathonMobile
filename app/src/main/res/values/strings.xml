@@ -25,5 +25,11 @@
     <string name="title_notifications">PASSENGER</string>
     <string name="todo">TODO</string>
     <string name="account_settings">Account settings</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="display_name">Display name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="btn_save">btn_save</string>
+    <string name="save_btn">SAVE</string>
 
 </resources>
