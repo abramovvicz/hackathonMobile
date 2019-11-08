@@ -19,11 +19,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".FilterActivity"
+            android:theme="@android:style/Theme.Holo.Dialog.NoActionBar"
+
+            ></activity>
         <activity
             android:name=".DriverActivity"
             android:label="@string/title_activity_driver"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -35,11 +39,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
         <meta-data
             android:name="com.google.android.gms.car.application"
-            android:resource="@xml/automotive_app_desc"/>
-
+            android:resource="@xml/automotive_app_desc" />
 
         <activity
             android:name=".MapsActivity"
@@ -57,8 +59,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name="com.harman.borsuki.carpooling.services.AndroidAutoMessagingService" />
 
+        <service android:name=".services.AndroidAutoMessagingService" />
     </application>
 
 </manifest>

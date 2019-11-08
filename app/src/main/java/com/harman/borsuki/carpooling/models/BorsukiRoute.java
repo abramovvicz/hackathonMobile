@@ -3,46 +3,27 @@ package com.harman.borsuki.carpooling.models;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 public class BorsukiRoute {
-    List<LatLng> routeCoords;
-    private String originName;
-    private String startingPlace;
+    List<LatLng> route;
+    private String startingName;
     private String destinationName;
     private String driverName;
     private String phoneNumber;
-    private LocalDateTime timeDate;
+    private LocalDateTime dateTime;
     private Double distance;
 
-    public BorsukiRoute(List<LatLng> routeCoords, String originName, String startingPlace,String destinationName, String driverName, String phoneNumber, LocalDateTime timeDate, Double distance) {
-        this.routeCoords = routeCoords;
-        this.originName = originName;
+    public BorsukiRoute(List<LatLng> route, String startingName, String destinationName, String driverName, String phoneNumber, LocalDateTime dateTime, Double distance) {
+        this.route = route;
+        this.startingName = startingName;
         this.destinationName = destinationName;
-        this.startingPlace = startingPlace;
         this.driverName = driverName;
         this.phoneNumber = phoneNumber;
-        this.timeDate = timeDate;
+        this.dateTime = dateTime;
         this.distance = distance;
     }
     public BorsukiRoute() {
-    }
-
-    public List<LatLng> getRouteCoords() {
-        return routeCoords;
-    }
-
-    public void setRouteCoords(List<LatLng> routeCoords) {
-        this.routeCoords = routeCoords;
-    }
-
-    public String getOriginName() {
-        return originName;
-    }
-
-    public void setOriginName(String originName) {
-        this.originName = originName;
     }
 
     public String getDestinationName() {
@@ -69,14 +50,6 @@ public class BorsukiRoute {
         this.phoneNumber = phoneNumber;
     }
 
-    public LocalDateTime getTimeDate() {
-        return timeDate;
-    }
-
-    public void setTimeDate(LocalDateTime timeDate) {
-        this.timeDate = timeDate;
-    }
-
     public Double getDistance() {
         return distance;
     }
@@ -85,34 +58,50 @@ public class BorsukiRoute {
         this.distance = distance;
     }
     public LatLng getOrigin() {
-        return  routeCoords.get(0);
+        return  route.get(0);
     }
     public LatLng getDestination() {
-        return routeCoords.get(routeCoords.size()-1);
+        return route.get(route.size()-1);
     }
     public String coordinationToString(LatLng coordination) {
         return coordination.latitude + "," + coordination.longitude;
+
     }
 
-    public String getStartingPlace() {
-        return startingPlace;
+    public List<LatLng> getRoute() {
+        return route;
     }
 
-    public void setStartingPlace(String startingPlace) {
-        this.startingPlace = startingPlace;
+    public void setRoute(List<LatLng> route) {
+        this.route = route;
+    }
+
+    public String getStartingName() {
+        return startingName;
     }
 
     @Override
     public String toString() {
         return "BorsukiRoute{" +
-                "routeCoords=" + routeCoords +
-                ", originName='" + originName + '\'' +
-                ", startingPlace='" + startingPlace + '\'' +
+                "route=" + route +
+                ", startingName='" + startingName + '\'' +
                 ", destinationName='" + destinationName + '\'' +
                 ", driverName='" + driverName + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", timeDate=" + timeDate +
+                ", dateTime=" + dateTime +
                 ", distance=" + distance +
                 '}';
+    }
+
+    public void setStartingName(String startingName) {
+        this.startingName = startingName;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
 }
