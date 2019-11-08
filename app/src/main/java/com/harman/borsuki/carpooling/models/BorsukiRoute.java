@@ -9,16 +9,18 @@ import java.util.List;
 public class BorsukiRoute {
     List<LatLng> routeCoords;
     private String originName;
+    private String startingPlace;
     private String destinationName;
     private String driverName;
     private String phoneNumber;
     private LocalDateTime timeDate;
     private Double distance;
 
-    public BorsukiRoute(List<LatLng> routeCoords, String originName, String destinationName, String driverName, String phoneNumber, LocalDateTime timeDate, Double distance) {
+    public BorsukiRoute(List<LatLng> routeCoords, String originName, String startingPlace,String destinationName, String driverName, String phoneNumber, LocalDateTime timeDate, Double distance) {
         this.routeCoords = routeCoords;
         this.originName = originName;
         this.destinationName = destinationName;
+        this.startingPlace = startingPlace;
         this.driverName = driverName;
         this.phoneNumber = phoneNumber;
         this.timeDate = timeDate;
@@ -93,4 +95,25 @@ public class BorsukiRoute {
 
     }
 
+    public String getStartingPlace() {
+        return startingPlace;
+    }
+
+    public void setStartingPlace(String startingPlace) {
+        this.startingPlace = startingPlace;
+    }
+
+    @Override
+    public String toString() {
+        return "BorsukiRoute{" +
+                "routeCoords=" + routeCoords +
+                ", originName='" + originName + '\'' +
+                ", startingPlace='" + startingPlace + '\'' +
+                ", destinationName='" + destinationName + '\'' +
+                ", driverName='" + driverName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", timeDate=" + timeDate +
+                ", distance=" + distance +
+                '}';
+    }
 }

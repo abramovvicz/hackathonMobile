@@ -37,5 +37,11 @@
         android:id="@+id/btn_go_to_routes"
         android:text="@string/go_to_routes"/>
 
+    <Button
+        android:id="@+id/btn_add_road"
+        android:layout_width="185dp"
+        android:layout_height="wrap_content"
+        android:text="@string/add_road" />
+
 
 </LinearLayout>
