@@ -10,6 +10,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.harman.borsuki.carpooling.models.BorsukiRoute;
+import com.harman.borsuki.carpooling.services.RouteService;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -21,6 +23,7 @@ import android.widget.EditText;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,7 +35,9 @@ public class DriverActivity extends AppCompatActivity {
     private EditText startingPlaceText;
     private EditText phoneText;
     private EditText dateText;
+    private EditText distanceText;
     private Button buttonSendRoad;
+    private DateTimeFormatter formatter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,14 +46,6 @@ public class DriverActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initialize();
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
     private void initialize() {
@@ -57,54 +54,57 @@ public class DriverActivity extends AppCompatActivity {
         startingPlaceText = findViewById(R.id.startingPlaceText);
         phoneText = findViewById(R.id.phoneNumberText);
         dateText = findViewById(R.id.dateText);
-        Button buttonSendRoad = findViewById(R.id.sendRoadButton);
-
+        distanceText = findViewById(R.id.distanceText);
+        buttonSendRoad = findViewById(R.id.sendRoadButton);
         buttonSendRoad.setOnClickListener(getSendRoad());
+        formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     }
 
     private View.OnClickListener getSendRoad(){
-//        String destination = destinationText.getText().toString();
-//        String startingPlace = startingPlaceText.getText().toString();
-//        String userName = user.getDisplayName();
-//        String phoneNumber = phoneText.getText().toString();
-//        //LocalDateTime date = dateText.getText().toString();
-//        Log.d("XD", "getSendRoad: " + dateText.getText().toString());
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String destination = destinationText.getText().toString();
-                String startingPlace = startingPlaceText.getText().toString();
-                String userName = user.getDisplayName();
-                String phoneNumber = phoneText.getText().toString();
-                //LocalDateTime date = dateText.getText().toString();
-                Log.d("XD", "getSendRoad: " + dateText.getText().toString());
-                Log.d("XD", "getSendRoad: " + destination + " lat " + getLoation(destination));
+                BorsukiRoute borsukiRoute = new BorsukiRoute();
+                borsukiRoute.setDestinationName(destinationText.getText().toString());
+                borsukiRoute.setStartingPlace(startingPlaceText.getText().toString());
+                borsukiRoute.setDriverName(user.getDisplayName());
+                borsukiRoute.setPhoneNumber(phoneText.getText().toString());
+                borsukiRoute.setDistance(Double.valueOf(distanceText.getText().toString()));
+                borsukiRoute.setTimeDate(getDate(dateText.getText().toString()));
+                List<LatLng> latLngList = new ArrayList<>();
+                latLngList.add(getLocationByCityName(startingPlaceText.getText().toString()));
+                latLngList.add(getLocationByCityName(destinationText.getText().toString()));
+                borsukiRoute.setRouteCoords(latLngList);
+                borsukiRoute.setRouteCoords(RouteService.getRoute(borsukiRoute));
+
+                Log.d("Debug", "onClick: " + borsukiRoute.toString());
+
                 //startActivity(new Intent(UserHomepageActivity.this, MapsActivity.class));
             }
         };
     }
 
-    private LatLng getLoation(String cityName) {
-        if(Geocoder.isPresent()){
-            try {
-                String location = cityName;
-                Geocoder gc = new Geocoder(this);
-                List<Address> addresses= gc.getFromLocationName(location, 5); // get the found Address Objects
+    private LocalDateTime getDate(String time){
+        return LocalDateTime.parse(time, formatter);
+    }
 
-                List<LatLng> ll = new ArrayList<LatLng>(addresses.size()); // A list to save the coordinates if they are available
-                System.out.println("Before addresses\n\n");
-                for(Address a : addresses){
-                    if(a.hasLatitude() && a.hasLongitude()){
-                        ll.add(new LatLng(a.getLatitude(), a.getLongitude()));
-                        return ll.get(0);
-                    }
+    private LatLng getLocationByCityName(String cityName) {
+        LatLng coords = null;
+        if (Geocoder.isPresent()) {
+            try {
+                Geocoder gc = new Geocoder(this);
+                Address addresses = gc.getFromLocationName(cityName, 5).get(0);
+
+                if (addresses.hasLatitude() && addresses.hasLongitude()) {
+                    coords = new LatLng(addresses.getLatitude(), addresses.getLongitude());
                 }
+                Log.d("DEBUG", "found city:" + coords.toString() + "\n\n\n");
             } catch (IOException e) {
-                // handle the exception
+                e.printStackTrace();
             }
         }
-        return null;
+        return coords;
     }
 
 }
