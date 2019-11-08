@@ -38,7 +38,7 @@ public class DriverActivity extends AppCompatActivity {
     private Button buttonSendRoad;
     private DateTimeFormatter formatter;
     private com.harman.borsuki.carpooling.Services.DeviceLocationService deviceLocationService;
-    private LatLng startingPlaceLatLng;
+    private LatLng actualPlace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class DriverActivity extends AppCompatActivity {
         buttonSendRoad.setOnClickListener(getSendRoad());
         formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         deviceLocationService = new DeviceLocationService();
-        startingPlaceLatLng = deviceLocationService.getDeviceLocation(this);
+        actualPlace = deviceLocationService.getDeviceLocation(this);
 
     }
 
@@ -89,7 +89,7 @@ public class DriverActivity extends AppCompatActivity {
                 getActualLocation();
 
                 Log.d("Debug", "onClick: " + borsukiRoute.toString());
-                Uri gmmIntentUri = Uri.parse("https://maps.google.com/maps?saddr=" + startingPlaceLatLng.latitude +","+ startingPlaceLatLng.longitude + "&daddr=" +destinationLatLng.latitude + "," + destinationLatLng.longitude + "+to:" + 55.751244 + "," + 37.618423+"&mode=d");
+                Uri gmmIntentUri = Uri.parse("https://maps.google.com/maps?saddr=" + startingPlaceLatLng.latitude +","+ startingPlaceLatLng.longitude + "&daddr=" +destinationLatLng.latitude + "," + destinationLatLng.longitude);
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                 mapIntent.setPackage("com.google.android.apps.maps");
                 if (mapIntent.resolveActivity(getPackageManager()) != null) {
@@ -101,7 +101,7 @@ public class DriverActivity extends AppCompatActivity {
     }
 
     private void getActualLocation(){
-        startingPlaceLatLng = deviceLocationService.getDeviceLocation(this);
+        actualPlace = deviceLocationService.getDeviceLocation(this);
     }
 
     private LocalDateTime getDate(String time){
