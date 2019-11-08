@@ -19,4 +19,8 @@
     <string name="search">Search</string>
     <string name="type_destination">Type Destination</string>
     <string name="go_to_routes">Go to routes</string>
+    <string name="title_activity_after_login">AfterLogin</string>
+    <string name="title_home">ACCOUNT</string>
+    <string name="title_dashboard">DRIVER</string>
+    <string name="title_notifications">PASSENGER</string>
 </resources>

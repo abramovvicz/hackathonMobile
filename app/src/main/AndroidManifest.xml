@@ -20,7 +20,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
         <activity android:name=".RouteDetailActivity"></activity>
+
+        <activity
+            android:name=".AfterLogin"
+            android:label="@string/title_activity_after_login"></activity>
+
         <activity
             android:name=".FilterActivity"
             android:theme="@android:style/Theme.Holo.Dialog.NoActionBar" />
