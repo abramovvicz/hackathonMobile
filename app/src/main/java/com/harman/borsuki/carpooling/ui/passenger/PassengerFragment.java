@@ -1,4 +1,4 @@
-package com.harman.borsuki.carpooling.ui.notifications;
+package com.harman.borsuki.carpooling.ui.passenger;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,16 +14,16 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.harman.borsuki.carpooling.R;
 
-public class NotificationsFragment extends Fragment {
+public class PassengerFragment extends Fragment {
 
-    private NotificationsViewModel notificationsViewModel;
+    private PassengerViewModel notificationsViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         notificationsViewModel =
-                ViewModelProviders.of(this).get(NotificationsViewModel.class);
+                ViewModelProviders.of(this).get(PassengerViewModel.class);
         View root = inflater.inflate(R.layout.fragment_passenger, container, false);
-        final TextView textView = root.findViewById(R.id.text_notifications);
+        final TextView textView = root.findViewById(R.id.text_passenger);
         notificationsViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {

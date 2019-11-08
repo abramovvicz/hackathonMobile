@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.harman.borsuki.carpooling.ui.home.HomeFragment"
+        android:name="com.harman.borsuki.carpooling.ui.account.AccountFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_account" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.harman.borsuki.carpooling.ui.dashboard.DashboardFragment"
+        android:name="com.harman.borsuki.carpooling.ui.driver.DriverFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_driver" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.harman.borsuki.carpooling.ui.notifications.NotificationsFragment"
+        android:name="com.harman.borsuki.carpooling.ui.passenger.PassengerFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_passenger" />
 </navigation>
