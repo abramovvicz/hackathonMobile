@@ -23,4 +23,7 @@
     <string name="title_home">ACCOUNT</string>
     <string name="title_dashboard">DRIVER</string>
     <string name="title_notifications">PASSENGER</string>
+    <string name="todo">TODO</string>
+
+
 </resources>
