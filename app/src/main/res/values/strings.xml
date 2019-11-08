@@ -10,4 +10,7 @@
     <string name="twitter_consumer_secret" translatable="false">EXwLo0LEJtSq9lC1SxEnYibQuuQbNDlq0O20UUUGjDSRRstOL0</string>
     <string name="title_activity_maps">Map</string>
     <string name="map">Go to map</string>
+    <string name="search">Search</string>
+    <string name="type_destination">Type Destination</string>
+    <string name="go_to_routes">Go to routes</string>
 </resources>
