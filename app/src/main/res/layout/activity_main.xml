@@ -5,6 +5,7 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:background="#337ab7"
     android:screenOrientation="portrait"
     tools:context=".MainActivity">
@@ -35,5 +36,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/harman_logo_main" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
