@@ -37,6 +37,7 @@ import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.DirectionsRoute;
 import com.google.maps.model.DirectionsStep;
 import com.google.maps.model.EncodedPolyline;
+import com.harman.borsuki.carpooling.models.BorsukiRoute;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -58,20 +59,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
         getLocationPremissions();
         checkGoogleServices();
-        getLocationByCityName("Lódź");
+        getLocationByCityName("Warszawa");
     }
 
     private LatLng getLocationByCityName(String cityName) {
         LatLng coords = null;
         if (Geocoder.isPresent()) {
             try {
-                String location = cityName;
                 Geocoder gc = new Geocoder(this);
-                Address addresses = gc.getFromLocationName(location, 5).get(0);
+                Address addresses = gc.getFromLocationName(cityName, 5).get(0);
 
                 if (addresses.hasLatitude() && addresses.hasLongitude()) {
                     coords = new LatLng(addresses.getLatitude(), addresses.getLongitude());
                 }
+                Log.d(TAG, "found city:" + coords.toString() + "\n\n\n");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -119,29 +120,24 @@ public LatLng getDeviceLocation(){
         if (mLocationPermissionGranted) {
             getDeviceLocation();
         }
-        doGowno(mMap);
     }
 
-    private void doGowno(GoogleMap mMap) {
-        LatLng barcelona = new LatLng(41.385064,2.173403);
-        mMap.addMarker(new MarkerOptions().position(barcelona).title("Marker in Barcelona"));
+    private List<LatLng> getRoute(BorsukiRoute borsukiRoute) {
+        LatLng origin = borsukiRoute.getRouteCoords().get(0);
+        LatLng dest = borsukiRoute.getRouteCoords().get(borsukiRoute.getRouteCoords().size()-1);
 
-        LatLng madrid = new LatLng(40.416775,-3.70379);
-        mMap.addMarker(new MarkerOptions().position(madrid).title("Marker in Madrid"));
+        mMap.addMarker(new MarkerOptions().position(origin).title(borsukiRoute.getOriginName()));
+        mMap.addMarker(new MarkerOptions().position(dest).title(borsukiRoute.getDestinationName()));
 
-        LatLng zaragoza = new LatLng(41.648823,-0.889085);
         List<LatLng> path = new ArrayList();
 
 
-        //Execute Directions API request
         GeoApiContext context = new GeoApiContext.Builder()
                 .apiKey("AIzaSyDk47IpF95u-ZtElNyByroR3l5BmZXcWrI")
                 .build();
-        DirectionsApiRequest req = DirectionsApi.getDirections(context, "41.385064,2.173403", "40.416775,-3.70379");
+        DirectionsApiRequest req = DirectionsApi.getDirections(context, borsukiRoute.coordinationToString(origin), borsukiRoute.coordinationToString(dest));
         try {
             DirectionsResult res = req.await();
-
-            //Loop through legs and steps to get encoded polylines of each step
             if (res.routes != null && res.routes.length > 0) {
                 DirectionsRoute route = res.routes[0];
 
@@ -179,18 +175,11 @@ public LatLng getDeviceLocation(){
                 }
             }
         } catch(Exception ex) {
-            Log.e("Gowno", ex.getLocalizedMessage());
+            Log.e(TAG, ex.getLocalizedMessage());
         }
 
-        //Draw the polyline
-        if (path.size() > 0) {
-            PolylineOptions opts = new PolylineOptions().addAll(path).color(Color.BLUE).width(5);
-            mMap.addPolyline(opts);
-        }
+        return path;
 
-        mMap.getUiSettings().setZoomControlsEnabled(true);
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(zaragoza, 6));
     }
 
     private void checkGoogleServices() {
