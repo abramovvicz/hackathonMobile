@@ -7,10 +7,9 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.harman.borsuki.carpooling.Services.DeviceLocationService;
 import com.harman.borsuki.carpooling.models.BorsukiRoute;
 import com.harman.borsuki.carpooling.services.RouteService;
 
@@ -26,7 +25,6 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class DriverActivity extends AppCompatActivity {
@@ -39,6 +37,8 @@ public class DriverActivity extends AppCompatActivity {
     private EditText distanceText;
     private Button buttonSendRoad;
     private DateTimeFormatter formatter;
+    private com.harman.borsuki.carpooling.Services.DeviceLocationService deviceLocationService;
+    private LatLng startingPlaceLatLng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +59,8 @@ public class DriverActivity extends AppCompatActivity {
         buttonSendRoad = findViewById(R.id.sendRoadButton);
         buttonSendRoad.setOnClickListener(getSendRoad());
         formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        deviceLocationService = new DeviceLocationService();
+        startingPlaceLatLng = deviceLocationService.getDeviceLocation(this);
 
     }
 
@@ -74,17 +76,20 @@ public class DriverActivity extends AppCompatActivity {
                 borsukiRoute.setDistance(Double.valueOf(distanceText.getText().toString()));
                 borsukiRoute.setTimeDate(getDate(dateText.getText().toString()));
                 List<LatLng> latLngList = new ArrayList<>();
-                latLngList.add(getLocationByCityName(startingPlaceText.getText().toString()));
 
                 LatLng destinationLatLng = getLocationByCityName(destinationText.getText().toString());
+                LatLng startingPlaceLatLng = getLocationByCityName(startingPlaceText.getText().toString());
 
+                latLngList.add(startingPlaceLatLng);
                 latLngList.add(destinationLatLng);
+
                 borsukiRoute.setRouteCoords(latLngList);
                 borsukiRoute.setRouteCoords(RouteService.getRoute(borsukiRoute));
 
-                Log.d("Debug", "onClick: " + borsukiRoute.toString());
+                getActualLocation();
 
-                Uri gmmIntentUri = Uri.parse("google.navigation:q=" + destinationLatLng.latitude + "," + destinationLatLng.longitude);
+                Log.d("Debug", "onClick: " + borsukiRoute.toString());
+                Uri gmmIntentUri = Uri.parse("https://maps.google.com/maps?saddr=" + startingPlaceLatLng.latitude +","+ startingPlaceLatLng.longitude + "&daddr=" +destinationLatLng.latitude + "," + destinationLatLng.longitude + "+to:" + 55.751244 + "," + 37.618423+"&mode=d");
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                 mapIntent.setPackage("com.google.android.apps.maps");
                 if (mapIntent.resolveActivity(getPackageManager()) != null) {
@@ -93,6 +98,10 @@ public class DriverActivity extends AppCompatActivity {
 
             }
         };
+    }
+
+    private void getActualLocation(){
+        startingPlaceLatLng = deviceLocationService.getDeviceLocation(this);
     }
 
     private LocalDateTime getDate(String time){
