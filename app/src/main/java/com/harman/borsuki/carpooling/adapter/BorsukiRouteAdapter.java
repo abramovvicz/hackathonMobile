@@ -31,7 +31,7 @@ public class BorsukiRouteAdapter extends ArrayAdapter<BorsukiRoute> {
         TextView tvName = convertView.findViewById(R.id.tvOrigin);
         TextView tvHome = convertView.findViewById(R.id.tvDestination);
         // Populate the data into the template view using the data object
-        tvName.setText(borsukiRoute.getOriginName());
+        tvName.setText(borsukiRoute.getStartingName());
         tvHome.setText(borsukiRoute.getDestinationName());
         // Return the completed view to render on screen
         return convertView;

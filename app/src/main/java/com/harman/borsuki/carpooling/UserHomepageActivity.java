@@ -74,7 +74,8 @@ public class UserHomepageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 LOGGER.info("changing email to borsuki@harman.com");
-                user.updateEmail("borsuki@harman.com");
+                //user.updateEmail("borsuki@harman.com");
+                startActivity(new Intent(UserHomepageActivity.this, FilterActivity.class));
             }
         };
     }
