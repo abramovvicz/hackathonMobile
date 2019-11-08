@@ -121,10 +121,10 @@ public LatLng getDeviceLocation(){
     }
 
     private List<LatLng> getRoute(BorsukiRoute borsukiRoute) {
-        LatLng origin = borsukiRoute.getRouteCoords().get(0);
-        LatLng dest = borsukiRoute.getRouteCoords().get(borsukiRoute.getRouteCoords().size()-1);
+        LatLng origin = borsukiRoute.getRoute().get(0);
+        LatLng dest = borsukiRoute.getRoute().get(borsukiRoute.getRoute().size()-1);
 
-        mMap.addMarker(new MarkerOptions().position(origin).title(borsukiRoute.getOriginName()));
+        mMap.addMarker(new MarkerOptions().position(origin).title(borsukiRoute.getStartingName()));
         mMap.addMarker(new MarkerOptions().position(dest).title(borsukiRoute.getDestinationName()));
 
         List<LatLng> path = new ArrayList();

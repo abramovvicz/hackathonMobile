@@ -38,12 +38,18 @@ public class UserHomepageActivity extends AppCompatActivity {
         Button buttonSignOut = findViewById(R.id.btn_sign_out);
         Button buttonGoToMap = findViewById(R.id.btn_go_to_map);
         Button buttonAddRoad = findViewById(R.id.btn_add_road);
+        Button buttonGoToRoutes = findViewById(R.id.btn_go_to_routes);
 
         buttonSignOut.setOnClickListener(getSigning_out());
         buttonChangePassword.setOnClickListener(getChangePassword());
         buttonChangeEmail.setOnClickListener(getChangeEmail());
         buttonGoToMap.setOnClickListener(getGoToMap());
         buttonAddRoad.setOnClickListener(getAddRoad());
+        buttonGoToRoutes.setOnClickListener(getGoToRoutes());
+    }
+
+    private View.OnClickListener getGoToRoutes() {
+        return v -> startActivity(new Intent(UserHomepageActivity.this, RoutesSearchActivity.class));
     }
 
     private View.OnClickListener getGoToMap() {
@@ -68,7 +74,8 @@ public class UserHomepageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 LOGGER.info("changing email to borsuki@harman.com");
-                user.updateEmail("borsuki@harman.com");
+                //user.updateEmail("borsuki@harman.com");
+                startActivity(new Intent(UserHomepageActivity.this, FilterActivity.class));
             }
         };
     }

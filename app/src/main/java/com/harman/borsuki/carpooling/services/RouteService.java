@@ -21,8 +21,8 @@ import java.util.List;
 public class RouteService {
 
     public static List<LatLng> getRoute(BorsukiRoute borsukiRoute) {
-        LatLng origin = borsukiRoute.getRouteCoords().get(0);
-        LatLng dest = borsukiRoute.getRouteCoords().get(borsukiRoute.getRouteCoords().size()-1);
+        LatLng origin = borsukiRoute.getRoute().get(0);
+        LatLng dest = borsukiRoute.getRoute().get(borsukiRoute.getRoute().size()-1);
 
         List<LatLng> path = new ArrayList();
 
