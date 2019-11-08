@@ -5,11 +5,10 @@ import android.app.TimePickerDialog;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.text.format.DateFormat;
-import android.widget.TimePicker;
 
 import androidx.fragment.app.DialogFragment;
 
-public static class TimePickerFragment extends DialogFragment
+public  class TimePicker extends DialogFragment
         implements TimePickerDialog.OnTimeSetListener {
 
     @Override
@@ -26,5 +25,10 @@ public static class TimePickerFragment extends DialogFragment
 
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         // Do something with the time chosen by the user
+    }
+
+    @Override
+    public void onTimeSet(android.widget.TimePicker view, int hourOfDay, int minute) {
+
     }
 }

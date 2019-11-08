@@ -33,5 +33,5 @@
     <string name="time">TIME</string>
     <string name="startDestination">hint</string>
     <string name="set_time">SET TIME</string>
-    <string name="pick_time" />
+    <string name="pick_time">SET TIME </string>
 </resources>
