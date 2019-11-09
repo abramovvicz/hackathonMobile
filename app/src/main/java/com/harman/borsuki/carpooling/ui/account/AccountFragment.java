@@ -33,10 +33,7 @@ import java.util.List;
 import static android.app.Activity.RESULT_OK;
 
 public class AccountFragment extends Fragment {
-    private static final int REQUEST_CODE = 6969;
     private static final String TAG = AccountFragment.class.getName();
-    private FirebaseUser currentUser;
-    private Button buttonSignOut;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -44,8 +41,8 @@ public class AccountFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_account, container, false);
 
 
-        currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        buttonSignOut = root.findViewById(R.id.btn_sign_out);
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        Button buttonSignOut = root.findViewById(R.id.btn_sign_out);
         if (currentUser == null) {
             ViewGroup viewGroup = (ViewGroup) buttonSignOut.getParent();
             viewGroup.removeView(buttonSignOut);
@@ -58,11 +55,7 @@ public class AccountFragment extends Fragment {
     private View.OnClickListener getSignOut() {
         return v -> {
             FirebaseAuth.getInstance().signOut();
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            if (Build.VERSION.SDK_INT >= 26) {
-                ft.setReorderingAllowed(false);
-            }
-            ft.detach(AccountFragment.this).attach(AccountFragment.this).commit();
+            startActivity(new Intent(this.getContext(), MainActivity.class));
         };
     }
 

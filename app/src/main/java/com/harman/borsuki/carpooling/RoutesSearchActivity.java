@@ -58,11 +58,6 @@ public class RoutesSearchActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-    LatLng temp = new LatLng(12.12,13.13);
-    LatLng temp2 = new LatLng(14.12,14.13);
-    String str = "2016-03-04 11:30";
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
 
 
     private void initialize() throws IOException {

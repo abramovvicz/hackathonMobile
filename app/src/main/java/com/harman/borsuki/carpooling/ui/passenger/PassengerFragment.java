@@ -1,35 +1,79 @@
 package com.harman.borsuki.carpooling.ui.passenger;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ListView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
+import com.google.gson.Gson;
 import com.harman.borsuki.carpooling.R;
+import com.harman.borsuki.carpooling.RouteDetailActivity;
+import com.harman.borsuki.carpooling.adapter.BorsukiRouteAdapter;
+import com.harman.borsuki.carpooling.models.BorsukiRoute;
+import com.harman.borsuki.carpooling.services.ApiClient;
+import com.harman.borsuki.carpooling.services.ApiInterface;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PassengerFragment extends Fragment {
 
-    private PassengerViewModel notificationsViewModel;
+    private ListView listView;
+    private List<BorsukiRoute> list;
+    private Context context;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        notificationsViewModel =
-                ViewModelProviders.of(this).get(PassengerViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_passenger, container, false);
-        final TextView textView = root.findViewById(R.id.text_passenger);
-        notificationsViewModel.getText().observe(this, new Observer<String>() {
+        listView = root.findViewById(R.id.lv_routes);
+        context = root.getContext();
+        initialize();
+        return root;
+    }
+
+    private void initialize(){
+
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            BorsukiRoute clickedItem = (BorsukiRoute) listView.getItemAtPosition(position);
+            Gson gson = new Gson();
+            String temp = gson.toJson(clickedItem);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("temp", temp);
+            PassengerFragmentDetail nextFrag= new PassengerFragmentDetail();
+            nextFrag.setArguments(bundle);
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(getId(), nextFrag, "findThisFragment")
+                    .addToBackStack(null)
+                    .commit();
+        });
+
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        Call<List<BorsukiRoute>> call = apiInterface.getAllRoutes();
+        call.enqueue(new Callback<List<BorsukiRoute>>() {
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public void onResponse(Call<List<BorsukiRoute>> call, Response<List<BorsukiRoute>> response) {
+                if(response.isSuccessful()){
+                    list = response.body();
+                    listView.setAdapter(new BorsukiRouteAdapter(context, list));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<BorsukiRoute>> call, Throwable t) {
+                Log.e("Error: ", t.getMessage());
             }
         });
-        return root;
+
     }
 }

@@ -24,4 +24,5 @@
     <string name="title_dashboard">DRIVER</string>
     <string name="title_notifications">PASSENGER</string>
     <string name="account_settings">Account settings</string>
+    <string name="filter">Filter</string>
 </resources>
