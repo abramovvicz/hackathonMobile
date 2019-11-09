@@ -23,4 +23,7 @@ public interface ApiInterface {
 
     @GET("request/find")
     Call<Passenger> getPassanger(@Query("driverId") String driverId);
+
+    @GET("find/byId")
+    Call<BorsukiRoute> getRoute(@Query("driverId") String driverId);
 }

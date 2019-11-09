@@ -28,28 +28,51 @@ public class DriverTrip extends AppCompatActivity {
     private Button accept;
     private String driverId;
     private Passenger passengerRequest;
+    BorsukiRoute borsukiRoute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_trip);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+        name = findViewById(R.id.nameTextView);
+        destination = findViewById(R.id.destinationText);
+        refresh = findViewById(R.id.refreshButton);
+        accept = findViewById(R.id.acceptButton);
+
         initialize();
 
         Intent intent = getIntent();
         Log.e("XD", "onCreate: "+ intent.getExtras().getString("driverId"));
         driverId = intent.getExtras().getString("driverId");
 
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        Call<BorsukiRoute> call = apiInterface.getRoute(driverId);
+        call.enqueue(new Callback<BorsukiRoute>() {
+            @Override
+            public void onResponse(Call<BorsukiRoute> call, Response<BorsukiRoute> response) {
+                borsukiRoute = response.body();
+                try{
+                    String temp = name.getText().toString() + ": "+ borsukiRoute.getDriverName();
+                    name.setText(temp);
+                    temp = start.getText().toString() + ": " + borsukiRoute.getStartingName();
+                    start.setText(temp);
+                    temp = destination.getText().toString() + ": " + borsukiRoute.getDestinationName();
+                    destination.setText(temp);
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<BorsukiRoute> call, Throwable t) {
+
+            }
+        });
     }
 
     public void initialize() {
-        name = findViewById(R.id.nameTextView);
-        start = findViewById(R.id.startingPlaceText);
-        destination = findViewById(R.id.destinationText);
-        refresh = findViewById(R.id.refreshButton);
-        accept = findViewById(R.id.acceptButton);
-
         refresh.setOnClickListener(getRefresh());
         accept.setOnClickListener(getAccept());
 
@@ -68,7 +91,6 @@ public class DriverTrip extends AppCompatActivity {
                     public void onResponse(Call<Passenger> call, Response<Passenger> response) {
                         if(response.isSuccessful()){
                             passengerRequest = response.body();
-                            name.setText(passengerRequest.getDriverPhoneNumber());
                             accept.setVisibility(View.VISIBLE);
                         }
                     }
