@@ -35,12 +35,11 @@ public class UserHomepageActivity extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         Button buttonChangeEmail = findViewById(R.id.btn_change_email);
         Button buttonChangePassword = findViewById(R.id.btn_change_password);
-        Button buttonSignIn = findViewById(R.id.btn_sign_in);
         Button buttonGoToMap = findViewById(R.id.btn_go_to_map);
         Button buttonAddRoad = findViewById(R.id.btn_add_road);
         Button buttonGoToRoutes = findViewById(R.id.btn_go_to_routes);
 
-        buttonSignIn.setOnClickListener(getSigning_out());
+
         buttonChangePassword.setOnClickListener(getChangePassword());
         buttonChangeEmail.setOnClickListener(getChangeEmail());
         buttonGoToMap.setOnClickListener(getGoToMap());
