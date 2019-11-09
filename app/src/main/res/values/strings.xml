@@ -46,6 +46,7 @@
     <string name="date">Date</string>
     <string name="distancefordriver">Distance for driver</string>
     <string name="set_your_road">Set road</string>
+    <string name="title_activity_driver_trip">DriverTrip</string>
 
 
 </resources>

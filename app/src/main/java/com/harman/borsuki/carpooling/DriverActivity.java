@@ -9,6 +9,9 @@ import android.os.Bundle;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.harman.borsuki.carpooling.models.Passenger;
+import com.harman.borsuki.carpooling.services.ApiClient;
+import com.harman.borsuki.carpooling.services.ApiInterface;
 import com.harman.borsuki.carpooling.services.DeviceLocationService;
 import com.harman.borsuki.carpooling.models.BorsukiRoute;
 import com.harman.borsuki.carpooling.services.RouteService;
@@ -27,6 +30,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class DriverActivity extends AppCompatActivity {
 
     private FirebaseUser user;
@@ -39,6 +46,7 @@ public class DriverActivity extends AppCompatActivity {
     private DateTimeFormatter formatter;
     private com.harman.borsuki.carpooling.services.DeviceLocationService deviceLocationService;
     private LatLng actualPlace;
+    private BorsukiRoute borsukiRoute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +76,7 @@ public class DriverActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BorsukiRoute borsukiRoute = new BorsukiRoute();
+                borsukiRoute = new BorsukiRoute();
                 borsukiRoute.setDestinationName(destinationText.getText().toString());
                 borsukiRoute.setStartingName(startingPlaceText.getText().toString());
                 borsukiRoute.setDriverName(user.getDisplayName());
@@ -89,15 +97,45 @@ public class DriverActivity extends AppCompatActivity {
                 getActualLocation();
 
                 Log.d("Debug", "onClick: " + borsukiRoute.toString());
-                Uri gmmIntentUri = Uri.parse("https://maps.google.com/maps?saddr=" + startingPlaceLatLng.latitude +","+ startingPlaceLatLng.longitude + "&daddr=" +destinationLatLng.latitude + "," + destinationLatLng.longitude);
-                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                mapIntent.setPackage("com.google.android.apps.maps");
-                if (mapIntent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(mapIntent);
-                }
+
+                ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+                Call<BorsukiRoute> call = apiInterface.addRoute(borsukiRoute);
+                call.enqueue(new Callback<BorsukiRoute>() {
+                    @Override
+                    public void onResponse(Call<BorsukiRoute> call, Response<BorsukiRoute> response) {
+                        if(response.isSuccessful()){
+                            borsukiRoute = response.body();
+                            Log.e("XD", "onResponse: " + borsukiRoute.getId());
+                            generateTrip(borsukiRoute.getId());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<BorsukiRoute> call, Throwable t) {
+                        Log.e("Error: ", t.getMessage());
+                    }
+                });
+
+
+
+
+
+
+//                Uri gmmIntentUri = Uri.parse("https://maps.google.com/maps?saddr=" + startingPlaceLatLng.latitude +","+ startingPlaceLatLng.longitude + "&daddr=" +destinationLatLng.latitude + "," + destinationLatLng.longitude);
+//                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+//                mapIntent.setPackage("com.google.android.apps.maps");
+//                if (mapIntent.resolveActivity(getPackageManager()) != null) {
+//                    startActivity(mapIntent);
+//                }
 
             }
         };
+    }
+
+    private void generateTrip(String id){
+        Intent i = new Intent(this, DriverTrip.class);
+        i.putExtra("driverId", id);
+        startActivity(i);
     }
 
     private void getActualLocation(){
