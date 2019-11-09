@@ -36,6 +36,9 @@
         tools:context=".RouteDetailActivity" />
 
     <Button
+        android:background="@color/tw__solid_white"
+        android:shadowColor="#00FFFFFF"
+        android:textColor="@color/colorPrimary"
         android:id="@+id/button_confirm"
         android:layout_width="match_parent"
         android:layout_height="60dp"

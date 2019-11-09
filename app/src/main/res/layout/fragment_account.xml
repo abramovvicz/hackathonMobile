@@ -124,12 +124,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:background="@color/tw__solid_white"
+        android:shadowColor="#00FFFFFF"
+        android:textColor="@color/colorPrimary"
         android:layout_marginStart="20dp"
         android:layout_marginTop="400dp"
         android:layout_marginEnd="20dp"
-        android:shadowColor="#00FFFFFF"
         android:text="@string/save_btn"
-        android:textColor="@color/colorPrimary"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

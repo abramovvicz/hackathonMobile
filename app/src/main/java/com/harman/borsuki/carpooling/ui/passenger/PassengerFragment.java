@@ -3,6 +3,7 @@ package com.harman.borsuki.carpooling.ui.passenger;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.AndroidRuntimeException;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,7 +49,14 @@ public class PassengerFragment extends Fragment {
             BorsukiRoute clickedItem = (BorsukiRoute) listView.getItemAtPosition(position);
             Intent intent = new Intent(this.getContext(), RouteDetailActivity.class);
             Gson gson = new Gson();
-            String temp = gson.toJson(clickedItem);
+            String temp;
+            try {
+                temp = gson.toJson(clickedItem);
+            }catch (AndroidRuntimeException e) {
+                e.printStackTrace();
+                temp = "";
+            }
+
             intent.putExtra("temp", temp);
             startActivity(intent);
         });

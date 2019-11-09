@@ -17,7 +17,9 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="@string/sign_in"
-        android:textColor="@color/bg_primary"
+        android:background="@color/tw__solid_white"
+        android:shadowColor="#00FFFFFF"
+        android:textColor="@color/colorPrimary"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -30,13 +32,12 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="84dp"
         android:contentDescription="@string/todo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/harman_logo_main" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
