@@ -32,6 +32,12 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="btn_save">btn_save</string>
     <string name="save_btn">SAVE</string>
+    <string name="enter_route">Enter route</string>
+    <string name="available_routes">Available routes</string>
+    <string name="name">Name</string>
+    <string name="hometown">HomeTown</string>
+    <string name="przerwa">-</string>
+    <string name="todoSecond">TODO</string>
 
 
 </resources>

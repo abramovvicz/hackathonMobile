@@ -12,6 +12,18 @@
         android:layout_height="wrap_content"
         android:padding="10dp">
 
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:hint="@string/available_routes"
+            android:textColor="@color/tw__solid_white"
+            android:textColorHint="@color/tw__solid_white"
+            android:textSize="20sp"
+            />
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -20,23 +32,45 @@
             android:id="@+id/button_filter"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="@string/filter" />
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:background="#00337AB7"
+            android:drawableStart="@drawable/filter_icon"
+            android:shadowColor="#00FFFFFF"
+            android:text="@string/filter"
+            android:textColor="@color/tw__solid_white" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="false"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="20dp"
         android:orientation="vertical">
 
 
         <ListView
             android:id="@+id/lv_routes"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
+            android:layout_height="match_parent"
+            android:theme="@style/ListStyle"
+            android:layout_marginStart="20dp"
+            >
         </ListView>
     </LinearLayout>
 
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="731dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="10dp"
+        android:background="#20FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </RelativeLayout>

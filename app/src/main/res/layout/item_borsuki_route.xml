@@ -1,14 +1,82 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="14dp"
+        android:layout_weight="1"
+        app:srcCompat="@drawable/pointtopiont"
+        android:contentDescription="@string/todoSecond" />
+
+
     <TextView
         android:id="@+id/tvOrigin"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Name" />
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:gravity="center"
+        android:text="@string/name"
+        android:textAlignment="viewStart"
+        android:textColor="@color/tw__solid_white"
+        android:textSize="16sp"
+
+        android:textStyle="bold"
+        tools:ignore="RtlCompat" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:gravity="center"
+        android:text="@string/przerwa"
+        android:textColor="@color/tw__solid_white"
+        android:textSize="16sp"
+
+        />
+
     <TextView
         android:id="@+id/tvDestination"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HomeTown" />
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:gravity="center"
+        android:text="@string/hometown"
+        android:textAlignment="viewStart"
+        android:textColor="@color/tw__solid_white"
+        android:textSize="16sp"
+
+        android:textStyle="bold"
+        tools:ignore="RtlCompat" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="14dp"
+        android:layout_weight="1"
+        app:srcCompat="@drawable/icon_user"
+        android:contentDescription="@string/todoSecond" />
+
+    <TextView
+        android:id="@+id/text_driver_name"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:autoSizeTextType="none"
+        android:gravity="center"
+        android:text="@string/hometown"
+        android:textAlignment="viewStart"
+        android:textColor="@color/tw__solid_white"
+        android:textSize="14sp"
+        tools:ignore="RtlCompat" />
+
 </LinearLayout>

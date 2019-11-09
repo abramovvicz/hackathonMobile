@@ -8,10 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.harman.borsuki.carpooling.R;
-import com.harman.borsuki.carpooling.RoutesSearchActivity;
 import com.harman.borsuki.carpooling.models.BorsukiRoute;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BorsukiRouteAdapter extends ArrayAdapter<BorsukiRoute> {
@@ -31,9 +29,12 @@ public class BorsukiRouteAdapter extends ArrayAdapter<BorsukiRoute> {
         // Lookup view for data population
         TextView tvName = convertView.findViewById(R.id.tvOrigin);
         TextView tvHome = convertView.findViewById(R.id.tvDestination);
+        TextView tvDriverName = convertView.findViewById(R.id.text_driver_name);
+
         // Populate the data into the template view using the data object
         tvName.setText(borsukiRoute.getStartingName());
         tvHome.setText(borsukiRoute.getDestinationName());
+        tvDriverName.setText(borsukiRoute.getDriverName());
         // Return the completed view to render on screen
         return convertView;
     }

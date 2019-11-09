@@ -32,6 +32,32 @@ public class BorsukiRoute implements Parcelable {
     public BorsukiRoute() {
     }
 
+    protected BorsukiRoute(Parcel in) {
+        route = in.createTypedArrayList(LatLng.CREATOR);
+        startingName = in.readString();
+        destinationName = in.readString();
+        driverName = in.readString();
+        phoneNumber = in.readString();
+        dateTime = in.readString();
+        if (in.readByte() == 0) {
+            distance = null;
+        } else {
+            distance = in.readDouble();
+        }
+    }
+
+    public static final Creator<BorsukiRoute> CREATOR = new Creator<BorsukiRoute>() {
+        @Override
+        public BorsukiRoute createFromParcel(Parcel in) {
+            return new BorsukiRoute(in);
+        }
+
+        @Override
+        public BorsukiRoute[] newArray(int size) {
+            return new BorsukiRoute[size];
+        }
+    };
+
     public String getDestinationName() {
         return destinationName;
     }
@@ -118,6 +144,17 @@ public class BorsukiRoute implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-
+        dest.writeTypedList(route);
+        dest.writeString(startingName);
+        dest.writeString(destinationName);
+        dest.writeString(driverName);
+        dest.writeString(phoneNumber);
+        dest.writeString(dateTime);
+        if (distance == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(distance);
+        }
     }
 }
