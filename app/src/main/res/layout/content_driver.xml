@@ -13,7 +13,7 @@
         android:id="@+id/destinationTextView"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:text="@string/desitantion"
+        android:text="@string/destination"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <EditText

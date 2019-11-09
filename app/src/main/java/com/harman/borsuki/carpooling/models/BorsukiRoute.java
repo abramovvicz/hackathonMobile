@@ -4,15 +4,14 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.android.gms.maps.model.LatLng;
-import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class BorsukiRoute implements Parcelable {
 
-    List<LatLng> route;
+
+    private List<LatLng> route;
+    private String id;
     private String startingName;
     private String destinationName;
     private String driverName;
@@ -20,8 +19,9 @@ public class BorsukiRoute implements Parcelable {
     private String dateTime;
     private Double distance;
 
-    public BorsukiRoute(List<LatLng> route, String startingName, String destinationName, String driverName, String phoneNumber, String dateTime, Double distance) {
+    public BorsukiRoute(List<LatLng> route, String driverId,String startingName, String destinationName, String driverName, String phoneNumber, String dateTime, Double distance) {
         this.route = route;
+        this.id = driverId;
         this.startingName = startingName;
         this.destinationName = destinationName;
         this.driverName = driverName;
@@ -31,6 +31,40 @@ public class BorsukiRoute implements Parcelable {
     }
     public BorsukiRoute() {
     }
+
+    protected BorsukiRoute(Parcel in) {
+        route = in.createTypedArrayList(LatLng.CREATOR);
+        startingName = in.readString();
+        destinationName = in.readString();
+        driverName = in.readString();
+        phoneNumber = in.readString();
+        dateTime = in.readString();
+        if (in.readByte() == 0) {
+            distance = null;
+        } else {
+            distance = in.readDouble();
+        }
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public static final Creator<BorsukiRoute> CREATOR = new Creator<BorsukiRoute>() {
+        @Override
+        public BorsukiRoute createFromParcel(Parcel in) {
+            return new BorsukiRoute(in);
+        }
+
+        @Override
+        public BorsukiRoute[] newArray(int size) {
+            return new BorsukiRoute[size];
+        }
+    };
 
     public String getDestinationName() {
         return destinationName;
@@ -118,6 +152,17 @@ public class BorsukiRoute implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-
+        dest.writeTypedList(route);
+        dest.writeString(startingName);
+        dest.writeString(destinationName);
+        dest.writeString(driverName);
+        dest.writeString(phoneNumber);
+        dest.writeString(dateTime);
+        if (distance == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(distance);
+        }
     }
 }

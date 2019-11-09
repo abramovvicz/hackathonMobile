@@ -63,7 +63,8 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".services.AndroidAutoMessagingService" />
+
+
     </application>
 
 </manifest>

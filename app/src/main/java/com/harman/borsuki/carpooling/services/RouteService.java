@@ -1,5 +1,7 @@
 package com.harman.borsuki.carpooling.services;
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.util.Log;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -15,6 +17,7 @@ import com.google.maps.model.DirectionsStep;
 import com.google.maps.model.EncodedPolyline;
 import com.harman.borsuki.carpooling.models.BorsukiRoute;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,11 +75,7 @@ public class RouteService {
         } catch(Exception ex) {
             Log.e("Exception", ex.getLocalizedMessage());
         }
-
-
-
         return path;
-
     }
-
 }
+

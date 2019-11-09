@@ -46,16 +46,11 @@ public class PassengerFragment extends Fragment {
 
         listView.setOnItemClickListener((parent, view, position, id) -> {
             BorsukiRoute clickedItem = (BorsukiRoute) listView.getItemAtPosition(position);
+            Intent intent = new Intent(this.getContext(), RouteDetailActivity.class);
             Gson gson = new Gson();
             String temp = gson.toJson(clickedItem);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("temp", temp);
-            PassengerFragmentDetail nextFrag= new PassengerFragmentDetail();
-            nextFrag.setArguments(bundle);
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(getId(), nextFrag, "findThisFragment")
-                    .addToBackStack(null)
-                    .commit();
+            intent.putExtra("temp", temp);
+            startActivity(intent);
         });
 
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);

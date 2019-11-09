@@ -26,13 +26,6 @@ public class DriverFragment extends Fragment {
         dashboardViewModel =
                 ViewModelProviders.of(this).get(DriverViewModel.class);
         View root = inflater.inflate(R.layout.fragment_driver, container, false);
-        final TextView textView = root.findViewById(R.id.text_driver);
-        dashboardViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
 
         startActivity(new Intent(this.getContext(), DriverActivity.class));
         return root;

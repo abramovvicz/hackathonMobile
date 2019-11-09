@@ -1,18 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RouteDetailActivity">
+    tools:context=".RouteDetailActivity"
+    android:background="@color/bg_primary">
 
+    <EditText
+        android:id="@+id/text_origin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/origin" />
 
+    <EditText
+        android:id="@+id/text_destination"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_origin"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/destination" />
 
     <fragment
-        android:id="@+id/map_detail"
+        android:id="@+id/map_detail2"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        tools:context=".RouteDetailActivity"/>
+        android:layout_height="550dp"
+        android:layout_above="@+id/button_confirm"
+        android:layout_marginBottom="10dp"
+        tools:context=".RouteDetailActivity" />
+
+    <Button
+        android:id="@+id/button_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:text="@string/confirm" />
+
+
 
 </RelativeLayout>

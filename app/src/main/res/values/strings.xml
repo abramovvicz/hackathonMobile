@@ -11,7 +11,7 @@
     <string name="title_activity_maps">Map</string>
     <string name="map">Go to map</string>
     <string name="title_activity_driver">DriverActivity</string>
-    <string name="desitantion">Desitantion</string>
+    <string name="destination">Desitantion</string>
     <string name="starting_place">Starting place</string>
     <string name="phone_number">Phone Number</string>
     <string name="send_road">Send Road</string>
@@ -32,6 +32,9 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="btn_save">btn_save</string>
     <string name="save_btn">SAVE</string>
+    <string name="confirm">Confirm</string>
+    <string name="origin">Origin</string>
+
 
 
 </resources>
