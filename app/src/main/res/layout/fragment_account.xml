@@ -35,7 +35,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/text_display_name"
+        android:id="@+id/text_driver_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -48,7 +48,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_title_account" />
+        app:layout_constraintTop_toBottomOf="@+id/text_title_account"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/text_email"
@@ -64,7 +65,8 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="80dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_title_account" />
+        app:layout_constraintTop_toBottomOf="@+id/text_title_account"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/text_password"
@@ -80,7 +82,8 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="140dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_title_account" />
+        app:layout_constraintTop_toBottomOf="@+id/text_title_account"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/text_confirmation_password"
@@ -96,7 +99,8 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="200dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_title_account" />
+        app:layout_constraintTop_toBottomOf="@+id/text_title_account"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/text_phone_number"
@@ -111,7 +115,8 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="260dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_title_account" />
+        app:layout_constraintTop_toBottomOf="@+id/text_title_account"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/btn_save"

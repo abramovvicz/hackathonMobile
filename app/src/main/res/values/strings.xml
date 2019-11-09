@@ -11,7 +11,9 @@
     <string name="title_activity_maps">Map</string>
     <string name="map">Go to map</string>
     <string name="title_activity_driver">DriverActivity</string>
+
     <string name="destination">Desitantion</string>
+
     <string name="starting_place">Starting place</string>
     <string name="phone_number">Phone Number</string>
     <string name="send_road">Send Road</string>
@@ -35,6 +37,15 @@
     <string name="confirm">Confirm</string>
     <string name="origin">Origin</string>
 
+    <string name="enter_route">Enter route</string>
+    <string name="available_routes">Available routes</string>
+    <string name="name">Name</string>
+    <string name="hometown">HomeTown</string>
+    <string name="przerwa">-</string>
+    <string name="todoSecond">TODO</string>
+    <string name="date">Date</string>
+    <string name="distancefordriver">Distance for driver</string>
+    <string name="set_your_road">Set road</string>
 
 
 </resources>
